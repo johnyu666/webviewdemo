@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+
+<button>test</button>
+<h1>Face1 </h1>
+<h2></h2>
+<h3></h3>
+
+<div id="app">
+    <p>{{name}}</p>
+
+    <ul>
+        <li v-for="book of books">{{book}}</li>
+    </ul>
+
+    <button @click="change()">changeName</button>
+</div>
+
+
+<script>
+        function fun1(msg) {
+            document.querySelector("h2").innerHTML=msg
+            return "hello："+msg
+        }
+        document.querySelector("button").addEventListener("click"
+            ,()=>{
+               var rs= myService.work('TomLi')
+                document.querySelector("h3").innerHTML=rs;
+            });
+      var vue=  new Vue({
+            el:"#app",
+            data:{
+                name:"MikeLiu",
+                books:["Thinking java","core Javascript"]
+            },
+          created(){
+             let rs=myService.findAllBooks();
+             let bks=JSON.parse(rs)
+              this.books.push(...bks);
+          },
+          methods:{
+              change(){
+                  this.name="JohnYu"
+                  this.books.push("XXXX")
+              }
+          }
+        });
+    </script>
+</body>
+</html>
